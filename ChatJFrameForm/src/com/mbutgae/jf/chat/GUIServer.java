@@ -70,6 +70,7 @@ public class GUIServer extends javax.swing.JFrame implements WindowListener {
             server = null;
             tPortNumber.setEditable(true);
             stopStart.setText("START");
+            this.setTitle("Chat Server");
             return;
         }
         // OK start the server	
@@ -132,7 +133,7 @@ public class GUIServer extends javax.swing.JFrame implements WindowListener {
         userLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CHAT SERVER AND LOG");
+        setTitle("Chat Server");
 
         InputPanel.setBackground(new java.awt.Color(0, 102, 102));
         InputPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -293,6 +294,7 @@ public class GUIServer extends javax.swing.JFrame implements WindowListener {
     }//GEN-LAST:event_stopStartMouseReleased
 
     private void stopStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopStartActionPerformed
+        this.setTitle("Chat Server - "+getIP()+" - Port: "+tPortNumber.getText()+" - Status: Online");
         startingServer();
     }//GEN-LAST:event_stopStartActionPerformed
 

@@ -349,6 +349,7 @@ public class GUIClient extends javax.swing.JFrame {
         if (!client.start()) {
             return;
         }
+        this.setTitle("Client Chat" + " - " + tf.getText() + " Port: "+tfPort.getText());
         tf.setText("");
         label.setText("Enter your message below");
         connected = true;
@@ -372,7 +373,7 @@ public class GUIClient extends javax.swing.JFrame {
         if (connected) {
             // just have to send the message
             client.sendMessage(new com.mbutgae.jf.chat.ChatMessage(com.mbutgae.jf.chat.ChatMessage.MESSAGE, tf.getText()));
-            tf.setText("");
+            tf.setText("");            
             //return;
         }
     }//GEN-LAST:event_tfActionPerformed
@@ -384,7 +385,7 @@ public class GUIClient extends javax.swing.JFrame {
         tfPort.setEditable(true);
         tfServer.setEnabled(connected);
         tfPort.setEnabled(connected);
-
+        this.setTitle("Client Chat");
         tf.setText("(IP) " + getIP());
         //return;
     }//GEN-LAST:event_logoutActionPerformed
