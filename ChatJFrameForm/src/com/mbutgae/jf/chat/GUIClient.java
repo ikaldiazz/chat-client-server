@@ -26,18 +26,18 @@ public class GUIClient extends javax.swing.JFrame {
     // the default port number
     private final int defaultPort;
     private final String defaultHost;
-    
+
     InetAddress ipAddr;
 
     /**
      * Creates new form GUIClient
+     *
      * @param host
      * @param port
      */
     public GUIClient(String host, int port) {
         initComponents();
-        
-        
+
         defaultPort = port;
         defaultHost = host;
         tfServer.setEditable(true);
@@ -46,24 +46,24 @@ public class GUIClient extends javax.swing.JFrame {
         tfPort.setEnabled(true);
         tfPort.requestFocus();
         logout.setEnabled(false);
-        
+
         tf.setText(getIP());
-        
+
         mulaiJam();
     }
-    
-    public String getIP(){
+
+    public String getIP() {
         try {
             ipAddr = InetAddress.getLocalHost();
             System.out.println(ipAddr.getHostAddress());
-            
+
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
-        return ipAddr.getHostAddress()+"";
+        return ipAddr.getHostAddress() + "";
     }
-    
-    private void mulaiJam(){
+
+    private void mulaiJam() {
         Clock c1 = new Clock(timeLabel);
         Thread t1 = new Thread(c1);
         t1.start();
@@ -312,7 +312,7 @@ public class GUIClient extends javax.swing.JFrame {
 
     private void whoIsInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whoIsInActionPerformed
         client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));
-        return;
+        //return; 
     }//GEN-LAST:event_whoIsInActionPerformed
 
     private void InputPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InputPanelMousePressed
@@ -373,7 +373,7 @@ public class GUIClient extends javax.swing.JFrame {
             // just have to send the message
             client.sendMessage(new com.mbutgae.jf.chat.ChatMessage(com.mbutgae.jf.chat.ChatMessage.MESSAGE, tf.getText()));
             tf.setText("");
-            return;
+            //return;
         }
     }//GEN-LAST:event_tfActionPerformed
 
@@ -384,9 +384,9 @@ public class GUIClient extends javax.swing.JFrame {
         tfPort.setEditable(true);
         tfServer.setEnabled(connected);
         tfPort.setEnabled(connected);
-        
-        tf.setText("(IP) "+getIP());
-        return;
+
+        tf.setText("(IP) " + getIP());
+        //return;
     }//GEN-LAST:event_logoutActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
