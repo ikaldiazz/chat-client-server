@@ -16,6 +16,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import net.sf.jcarrierpigeon.WindowPosition;
+import net.sf.jtelegraph.Telegraph;
+import net.sf.jtelegraph.TelegraphQueue;
+import net.sf.jtelegraph.TelegraphType;
 
 /**
  *
@@ -104,6 +108,7 @@ public class GUIServer extends javax.swing.JFrame implements WindowListener {
     void appendRoom(String str) {
         chat.append(str);
         chat.setCaretPosition(chat.getText().length() - 1);
+        notifPush("Pesan Baru", str, TelegraphType.NOTIFICATION_INFO, 3000);
     }
 
     void appendEvent(String str) {
@@ -111,7 +116,12 @@ public class GUIServer extends javax.swing.JFrame implements WindowListener {
         event.setCaretPosition(event.getText().length() - 1);
 
     }
-
+    
+    public void notifPush(String title, String message, TelegraphType type,int duration) {
+        Telegraph tele = new Telegraph(title, message, type, WindowPosition.BOTTOMLEFT, duration);
+        TelegraphQueue q = new TelegraphQueue();
+        q.add(tele);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

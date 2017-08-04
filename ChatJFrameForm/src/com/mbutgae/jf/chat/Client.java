@@ -12,6 +12,10 @@ package com.mbutgae.jf.chat;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import net.sf.jcarrierpigeon.WindowPosition;
+import net.sf.jtelegraph.Telegraph;
+import net.sf.jtelegraph.TelegraphQueue;
+import net.sf.jtelegraph.TelegraphType;
 
 /*
  * The Client that can be run both as a console or a GUI
@@ -52,6 +56,12 @@ public class Client {
         this.username = username;
         // save if we are in GUI mode or not
         this.cg = cg;
+    }
+    
+    public void notifPush(String title, String message, TelegraphType type,int duration) {
+        Telegraph tele = new Telegraph(title, message, type, WindowPosition.BOTTOMLEFT, duration);
+        TelegraphQueue q = new TelegraphQueue();
+        q.add(tele);
     }
 
     /*
@@ -102,6 +112,7 @@ public class Client {
             System.out.println(msg);      // println in console mode
         } else {
             cg.append(msg + "\n");		// append to the ClientGUI JTextArea (or whatever)
+            //notifPush("Pesan baru", msg, TelegraphType.NOTIFICATION_INFO, 3000);
         }
     }
 
@@ -113,6 +124,7 @@ public class Client {
             sOutput.writeObject(msg);
         } catch (IOException e) {
             display("Exception writing to server: " + e);
+            notifPush("Pesan baru", msg.getMessage(), TelegraphType.NOTIFICATION_INFO, 3000);
         }
     }
 
@@ -258,6 +270,7 @@ public class Client {
                     }
                 } catch (IOException e) {
                     display("Server has close the connection: " + e);
+                    notifPush("Pesan baru", "Server Dinonaktifkan", TelegraphType.NOTIFICATION_INFO, 3000);
                     if (cg != null) {
                         cg.connectionFailed();
                     }
